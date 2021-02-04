@@ -11,6 +11,13 @@ const saltRounds = 10;
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, 'build')));
+
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'App.js'));
+});
+
 app.use(express.json());
 app.use(cors({
     origin: ["http://localhost:3000"],
